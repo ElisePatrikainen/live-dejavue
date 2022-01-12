@@ -1,12 +1,12 @@
 <script setup>
 const newData = ref('')
 const { data } = await useFetch('/api/test')
-const currentData = ref(JSON.parse(data.value).description)
+console.log(data.value)
 const test = async () => {
   await $fetch('/api/test', { method: 'POST', body: {description: newData.value}})
   // todo: handle errors
-  currentData.value = newData.value
-  console.log(currentData.value)
+  data.value = newData.value
+  console.log(data.value)
   newData.value = ''
 }
 </script>
@@ -17,6 +17,6 @@ const test = async () => {
   {{newData}}
   <input v-model="newData" />
   <button @click="test">Test</button>
-  {{currentData}}
+  {{data}}
   </div>
 </template>
